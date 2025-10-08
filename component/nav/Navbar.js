@@ -10,7 +10,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import Box from "@mui/material/Box";
-
+import HotelLogo from "./HotelLogo";
 const Navbar = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
   const [anchorEl, setAnchorEI] = React.useState(null);
@@ -75,7 +75,7 @@ const Navbar = () => {
                     letterSpacing: "0.5px",
                   }}
                 >
-                  Serenova
+                  <HotelLogo />
                 </Box>
               </Link>
             </Typography>
