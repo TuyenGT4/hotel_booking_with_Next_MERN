@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import TopNav from "@/component/nav/TopNav";
+import Navbar from "@/component/nav/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
           <TopNav />
+          <Navbar />
           {children}
         </SessionProvider>
       </body>

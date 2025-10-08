@@ -17,14 +17,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 import Link from "next/link";
+
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const { data: session } = useSession();
+  // const { data: session } = useSession(); // Tạm tắt nếu chưa dùng NextAuth
+  const session = null; // Giả lập chưa đăng nhập
   const router = useRouter();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
@@ -32,28 +33,42 @@ const Navbar = () => {
   };
 
   const drawer = (
-    <Box sx={{ width: 250 }}>
+    <Box sx={{ width: 250, backgroundColor: "#FAF3E0", height: "100%" }}>
       <List>
         <ListItem>
-          <LanguageIcon sx={{ mr: 1 }} />
+          <LanguageIcon sx={{ mr: 1, color: "#3E2723" }} />
           <Select
-            value="English"
+            value="Vietnamese"
             variant="standard"
             disableUnderline
-            sx={{ color: "black" }}
+            sx={{ color: "#3E2723" }}
           >
+            <MenuItem value="Vietnamese">Vietnamese</MenuItem>
             <MenuItem value="English">English</MenuItem>
-            <MenuItem value="Spanish">Spanish</MenuItem>
           </Select>
         </ListItem>
         <ListItem>
-          <Button color="inherit" startIcon={<AccountCircleIcon />}>
-            Login
+          <Button
+            color="inherit"
+            startIcon={<AccountCircleIcon />}
+            sx={{
+              color: "#3E2723",
+              "&:hover": { color: "#BCAAA4" },
+            }}
+          >
+            Đăng nhập
           </Button>
         </ListItem>
         <ListItem>
-          <Button color="inherit" startIcon={<AccountCircleIcon />}>
-            Register
+          <Button
+            color="inherit"
+            startIcon={<AccountCircleIcon />}
+            sx={{
+              color: "#3E2723",
+              "&:hover": { color: "#BCAAA4" },
+            }}
+          >
+            Đăng ký
           </Button>
         </ListItem>
       </List>
@@ -61,36 +76,38 @@ const Navbar = () => {
   );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "red" }}>
+    <AppBar
+      position="static"
+      sx={{
+        background: "linear-gradient(90deg, #4E342E 0%, #6D4C41 100%)",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+      }}
+    >
       <Toolbar sx={{ justifyContent: "space-between" }}>
+        {/* Logo + Language */}
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <LanguageIcon sx={{ mr: 1 }} />
+          <LanguageIcon sx={{ mr: 1, color: "#D7CCC8" }} />
           <Select
-            value="English"
+            value="Vietnamese"
             variant="standard"
             disableUnderline
-            sx={{ color: "white" }}
+            sx={{ color: "#D7CCC8" }}
           >
+            <MenuItem value="Vietnamese">Vietnamese</MenuItem>
             <MenuItem value="English">English</MenuItem>
-            <MenuItem value="Spanish">Spanish</MenuItem>
-            <MenuItem value="French">French</MenuItem>
-            <MenuItem value="German">German</MenuItem>
-            <MenuItem value="Chinese">Chinese</MenuItem>
-            <MenuItem value="Japanese">Japanese</MenuItem>
-            <MenuItem value="Hindi">Hindi</MenuItem>
-            <MenuItem value="Arabic">Arabic</MenuItem>
           </Select>
         </Box>
+
+        {/* Responsive */}
         {isMobile ? (
           <>
             <IconButton
               edge="end"
               color="inherit"
               aria-label="menu"
-              sx={{ zIndex: 1400 }}
               onClick={toggleDrawer(true)}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: "#FAF3E0" }} />
             </IconButton>
             <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
               {drawer}
@@ -100,18 +117,17 @@ const Navbar = () => {
           <Box
             sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}
           >
-            <HomeIcon sx={{ mr: 1 }} />
-            <Typography variant="body1" sx={{ color: "white", mr: 2 }}>
-              "The Yolk's On You Manor" 127.0.0.0.1
+            <HomeIcon sx={{ mr: 1, color: "#FFB300" }} />
+            <Typography variant="body1" sx={{ color: "#FAF3E0", mr: 2 }}>
+              Serenova - Đặt Phòng Nghỉ Dưỡng Cao Cấp
             </Typography>
-            <PhoneIcon sx={{ mr: 1 }} />
-            <Typography variant="body1" sx={{ color: "white", mr: 2 }}>
-              +1 222-363-5354
+            <PhoneIcon sx={{ mr: 1, color: "#FFB300" }} />
+            <Typography variant="body1" sx={{ color: "#FAF3E0", mr: 2 }}>
+              +84 372 073 044
             </Typography>
 
             {session?.user ? (
               <img
-                onClick={handleClick}
                 src={session.user.image || "/images/pic1.png"}
                 alt="User Avatar"
                 style={{
@@ -119,30 +135,42 @@ const Navbar = () => {
                   height: "60px",
                   borderRadius: "50%",
                   objectFit: "cover",
-                  position: "relative",
-                  zIndex: 2,
-                  cursor: "pointer", // This makes the hand pointer appear on hover
+                  cursor: "pointer",
                 }}
               />
             ) : (
               <>
-                <Button color="inherit" startIcon={<AccountCircleIcon />}>
+                <Button
+                  startIcon={<AccountCircleIcon />}
+                  sx={{
+                    color: "#D7CCC8",
+                    fontWeight: "bold",
+                    "&:hover": { color: "#FFB300" },
+                  }}
+                >
                   <Link href="/login" passHref>
                     <Box
                       component="span"
-                      sx={{ textDecoration: "none", color: "white" }}
+                      sx={{ textDecoration: "none", color: "inherit" }}
                     >
-                      Login
+                      Đăng nhập
                     </Box>
                   </Link>
                 </Button>
-                <Button color="inherit" startIcon={<AccountCircleIcon />}>
-                  <Link href="/register">
+                <Button
+                  startIcon={<AccountCircleIcon />}
+                  sx={{
+                    color: "#D7CCC8",
+                    fontWeight: "bold",
+                    "&:hover": { color: "#FFB300" },
+                  }}
+                >
+                  <Link href="/register" passHref>
                     <Box
                       component="span"
-                      sx={{ textDecoration: "none", color: "white" }}
+                      sx={{ textDecoration: "none", color: "inherit" }}
                     >
-                      Register
+                      Đăng ký
                     </Box>
                   </Link>
                 </Button>
