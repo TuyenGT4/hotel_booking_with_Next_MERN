@@ -1,0 +1,30 @@
+const DB_URL = "mongodb://127.0.0.1:27017/hotel_booking";
+
+const API = " http://localhost:3000/api";
+
+const CLOUDINARY_CLOUD_NAME = "";
+
+const CLOUDINARY_API_KEY = "";
+
+const CLOUDINARY_API_SECRET = "";
+
+const GOOGLE_API_KEY = "";
+
+const NEXTAUTH_SECRET = "RH53895U3895GFGJTI84TU48T4";
+
+const GOOGLE_CLIENT_ID = "";
+
+const GOOGLE_CLIENT_SECRET = "";
+
+module.exports = {
+  DB_URL,
+
+  API,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+  GOOGLE_API_KEY,
+  NEXTAUTH_SECRET,
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+};
