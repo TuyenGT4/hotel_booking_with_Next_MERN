@@ -17,19 +17,22 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  // const { data: session } = useSession(); // Tạm tắt nếu chưa dùng NextAuth
-  const session = null; // Giả lập chưa đăng nhập
+  const { data: session } = useSession();
   const router = useRouter();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setDrawerOpen(newOpen);
+  };
+
+  const handleClick = () => {
+    router.push(`/dashboard/${session?.user?.role}`);
   };
 
   const drawer = (
@@ -128,7 +131,8 @@ const Navbar = () => {
 
             {session?.user ? (
               <img
-                src={session.user.image || "/images/pic1.png"}
+                onClick={handleClick}
+                src={session?.user?.image || "/images/pic1.jpg"}
                 alt="User Avatar"
                 style={{
                   width: "60px",

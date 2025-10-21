@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <SessionProvider>
+      <SessionProvider>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
           <TopNav />
           <Navbar />
           {children}
-        </SessionProvider>
-      </body>
+        </body>
+      </SessionProvider>
     </html>
   );
 }

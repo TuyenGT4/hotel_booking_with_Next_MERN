@@ -273,11 +273,24 @@ const RegisterPage = () => {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        sx={{
+          "& .MuiSnackbar-root": {
+            top: "24px",
+            left: "24px",
+          },
+        }}
       >
         <Alert
           onClose={handleCloseSnackbar}
-          severity={snackbarSeverity}
-          sx={{ width: "100%" }}
+          severity={snackbarSeverity} // "error", "success", "info", "warning"
+          variant="filled" // nền đặc, dễ nhìn hơn
+          sx={{
+            width: "100%",
+            bgcolor: "#dcf170ff", // đổi mã màu tuỳ ý
+            color: "black",
+            boxShadow: 3,
+          }}
         >
           {snackbarMessage}
         </Alert>
