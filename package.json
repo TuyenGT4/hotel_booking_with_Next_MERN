@@ -1,0 +1,30 @@
+{
+  "name": "hotel_booking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@google/generative-ai": "^0.24.1",
+    "@mui/icons-material": "^7.3.2",
+    "@mui/material": "^7.3.2",
+    "bcrypt": "^6.0.0",
+    "d3-scale-chromatic": "^3.1.0",
+    "framer-motion": "^12.23.24",
+    "mongoose": "^8.19.1",
+    "next": "15.5.2",
+    "next-auth": "^4.24.11",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-redux": "^9.2.0",
+    "react-simple-maps": "^3.0.0",
+    "react-toastify": "^11.0.5",
+    "recharts": "^3.3.0",
+    "redux": "^5.0.1"
+  }
+}
